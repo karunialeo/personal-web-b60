@@ -8,9 +8,15 @@ body {
   margin: 0;
 }
 
+/* NAVBAR */
 nav {
   background-color: #eaeaea;
   padding: 2px 40px;
+}
+
+.btn-orangered {
+  background-color: orangered !important;
+  color: white !important;
 }
 
 .main-menu {
