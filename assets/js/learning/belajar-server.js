@@ -6,29 +6,22 @@ app.set("view engine", "hbs");
 
 app.use(express.static("assets"));
 
-// HOME
+// HALAMAN HOME
 app.get("/", (req, res) => {
+  // res.send("Hello express! Ini halaman utama");
   res.render("index");
 });
 
-// CONTACT ME
-app.get("/contact", (req, res) => {
-  res.render("contact");
+// REQUEST PARAMS
+app.get("/about/:id", (req, res) => {
+  const id = req.params.id;
+  res.send(`Halo! ini halaman tentang ${id}`);
 });
 
-// BLOG
+// REQUEST QUERY
 app.get("/blog", (req, res) => {
-  res.render("blog");
-});
-
-// BLOG DETAIL
-app.get("/blog/:id", (req, res) => {
-  res.render("blog-detail");
-});
-
-// BLOG DETAIL
-app.get("/testimonials", (req, res) => {
-  res.render("testimonials");
+  const { title, author, year } = req.query;
+  res.send(`ini halaman blog ${title} dengan author ${author} tahun ${year}`);
 });
 
 app.listen(port, () => {
