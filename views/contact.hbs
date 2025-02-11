@@ -1,77 +1,37 @@
-<!DOCTYPE html>
-<html>
+{{#> layout currentPage='Contact'}}
 
-<head>
-  <title>Personal Web</title>
-  <link rel="icon" href="/img/icon-dev.png" />
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-
-<body>
-  <!-- NAVBAR -->
-  <nav>
-    <div class="main-menu">
-      <ul class="navbar-links">
-        <img src="/img/logo.png" />
-        <li>
-          <a href="index.html">Home</a>
-        </li>
-        <li>
-          <a href="blog.html">Blog</a>
-        </li>
-      </ul>
-      <a class="nav-contact-button" href="contact.html">Contact Me</a>
-    </div>
-    <div class="mobile-menu">
-      <img src="/img/logo.png" />
-      <button type="button" id="hamburger-button" class="hamburger-button">
-        ☰
-      </button>
-    </div>
-  </nav>
-  <div id="mobile-menu-list" class="mobile-menu-list mobile-menu-hide">
-    <a href="index.html">Home</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html" class="menu-active">Contact Me</a>
+<form class="contact-form" onsubmit="submitForm(event)">
+  <h1>Contact Me!</h1>
+  <div class="form-field">
+    <label for="name">name</label>
+    <input id="name" type="text" required />
   </div>
 
-  <form class="contact-form" onsubmit="submitForm(event)">
-    <h1>Contact Me!</h1>
-    <div class="form-field">
-      <label for="name">name</label>
-      <input id="name" type="text" required />
-    </div>
+  <div class="form-field">
+    <label for="email">email</label>
+    <input id="email" type="text" required />
+  </div>
 
-    <div class="form-field">
-      <label for="email">email</label>
-      <input id="email" type="text" required />
-    </div>
+  <div class="form-field">
+    <label for="subject">subject</label>
+    <input id="subject" type="text" required />
+  </div>
 
-    <div class="form-field">
-      <label for="subject">subject</label>
-      <input id="subject" type="text" required />
-    </div>
+  <div class="form-field">
+    <label for="skill">skill</label>
+    <select id="skill" required>
+      <option value="">Select any skill...</option>
+      <option value="frontend">Frontend</option>
+      <option value="backend">Backend</option>
+    </select>
+  </div>
 
-    <div class="form-field">
-      <label for="skill">skill</label>
-      <select id="skill" required>
-        <option value="">Select any skill...</option>
-        <option value="frontend">Frontend</option>
-        <option value="backend">Backend</option>
-      </select>
-    </div>
+  <div class="form-field">
+    <label for="message">message</label>
+    <textarea id="message" required></textarea>
+  </div>
 
-    <div class="form-field">
-      <label for="message">message</label>
-      <textarea id="message" required></textarea>
-    </div>
+  <button type="submit">Submit</button>
+</form>
 
-    <button type="submit">Submit</button>
-  </form>
-
-  <script src="/js/belajar-js.js"></script>
-  <script src="/js/contact-form.js"></script>
-  <script src="/js/navbar.js"></script>
-</body>
-
-</html>
+{{/layout}}
