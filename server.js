@@ -34,7 +34,6 @@ hbs.registerHelper("getRelativeTime", getRelativeTime);
 // HOME
 app.get("/", (req, res) => {
   res.render("index");
-  console.log("test");
 });
 
 // CONTACT ME
