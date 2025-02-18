@@ -4,14 +4,18 @@ const hbs = require("hbs");
 const path = require("path");
 const methodOverride = require("method-override");
 
+// const { renderBlogEdit, updateBlog } = require("./controllers/controller-v1");
+
 const {
   renderBlog,
   renderBlogDetail,
-  renderBlogEdit,
-  createBlog,
-  updateBlog,
   deleteBlog,
-} = require("./controllers/controller-v1");
+  renderBlogCreate,
+  createBlog,
+  renderBlogEdit,
+  updateBlog,
+} = require("./controllers/controller-v2");
+
 const { formatDateToWIB, getRelativeTime } = require("./utils/time");
 
 const port = 3000;
@@ -45,9 +49,7 @@ app.get("/contact", (req, res) => {
 app.get("/blog", renderBlog);
 
 // RENDER CREATE BLOG
-app.get("/blog-create", (req, res) => {
-  res.render("blog-create");
-});
+app.get("/blog-create", renderBlogCreate);
 
 // SUBMIT CREATE NEW BLOG
 app.post("/blog-create", createBlog);
@@ -67,6 +69,10 @@ app.get("/blog/:id", renderBlogDetail);
 // TESTIMONIALS
 app.get("/testimonials", (req, res) => {
   res.render("testimonials");
+});
+
+app.get("*", (req, res) => {
+  res.render("page-404");
 });
 
 app.listen(port, () => {
