@@ -3,10 +3,20 @@ const app = express();
 const hbs = require("hbs");
 const path = require("path");
 const methodOverride = require("method-override");
+const flash = require("express-flash");
+const session = require("express-session");
 
 // const { renderBlogEdit, updateBlog } = require("./controllers/controller-v1");
 
 const {
+  renderHome,
+  renderLogin,
+  renderRegister,
+  renderContact,
+  renderTestimonials,
+  authLogin,
+  authRegister,
+  authLogout,
   renderBlog,
   renderBlogDetail,
   deleteBlog,
@@ -14,6 +24,7 @@ const {
   createBlog,
   renderBlogEdit,
   updateBlog,
+  renderError,
 } = require("./controllers/controller-v2");
 
 const { formatDateToWIB, getRelativeTime } = require("./utils/time");
@@ -23,10 +34,20 @@ const port = 3000;
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views")); // C://My Computer/Users/Documents/../../personal-web/views
 
+// modul apa saja yang kita gunakan di dalam express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("assets"));
 app.use(methodOverride("_method"));
+app.use(flash());
+app.use(
+  session({
+    name: "my-session",
+    secret: "askdj3ajwklfj3k3454",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});
 hbs.registerHelper("equal", function (a, b) {
@@ -36,14 +57,20 @@ hbs.registerHelper("formatDateToWIB", formatDateToWIB);
 hbs.registerHelper("getRelativeTime", getRelativeTime);
 
 // HOME
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.get("/", renderHome);
+
+app.get("/login", renderLogin);
+
+app.get("/register", renderRegister);
+
+app.get("/logout", authLogout);
+
+app.post("/login", authLogin);
+
+app.post("/register", authRegister);
 
 // CONTACT ME
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
+app.get("/contact", renderContact);
 
 // BLOG LIST
 app.get("/blog", renderBlog);
@@ -67,13 +94,9 @@ app.delete("/blog/:id", deleteBlog);
 app.get("/blog/:id", renderBlogDetail);
 
 // TESTIMONIALS
-app.get("/testimonials", (req, res) => {
-  res.render("testimonials");
-});
+app.get("/testimonials", renderTestimonials);
 
-app.get("*", (req, res) => {
-  res.render("page-404");
-});
+app.get("*", renderError);
 
 app.listen(port, () => {
   console.log(`My personal web app listening on port ${port}`);

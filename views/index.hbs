@@ -1,4 +1,17 @@
-{{#> layout currentPage='Home'}}
+{{#> layout currentPage='Home' }}
+
+{{#if messages.success}}
+<div class="alert alert-success mx-5 mt-2" role="alert">
+  {{messages.success}}
+</div>
+{{/if}}
+
+{{#if messages.warning}}
+<div class="alert alert-warning mx-5 mt-2" role="alert">
+  {{messages.warning}}
+</div>
+{{/if}}
+
 <main class="main-content">
   <!-- PROFILE CARD -->
   <section id="card-section">
