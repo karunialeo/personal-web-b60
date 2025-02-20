@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const flash = require("express-flash");
 const session = require("express-session");
 const upload = require("./middlewares/upload-file");
+require("dotenv").config();
 
 // const { renderBlogEdit, updateBlog } = require("./controllers/controller-v1");
 
@@ -31,7 +32,7 @@ const {
 const { formatDateToWIB, getRelativeTime } = require("./utils/time");
 const checkUser = require("./middlewares/auth");
 
-const port = 3000;
+const port = process.env.SERVER_PORT || 3000;
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views")); // C://My Computer/Users/Documents/../../personal-web/views
