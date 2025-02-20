@@ -176,32 +176,32 @@ async function renderBlogDetail(req, res) {
 
 async function renderBlogCreate(req, res) {
   // memunculkan halaman create blog
-  const user = req.session.user;
-  console.log("usernya adalah :", user);
-
-  if (user) {
-    res.render("blog-create");
-  } else {
-    res.redirect("/login");
-  }
+  res.render("blog-create");
 }
 
 async function createBlog(req, res) {
+  const user = req.session.user;
+
+  if (!user) {
+    req.flash("error", "Please login.");
+    return res.redirect("/login");
+  }
   // create blog submission
   const { title, content } = req.body; // title dan content adalah properti milik req.body
-  console.log("judulnya adalah", title);
-  console.log("contentnya :", content);
 
   let dummyImage = "https://picsum.photos/200/150";
+
+  const image = req.file.path;
+  console.log("image yg di upload :", image);
 
   const newBlog = {
     title, // ini sama saja dengan menuliskan title: title
     content,
-    image: dummyImage,
+    authorId: user.id,
+    image: image,
   };
 
   const resultSubmit = await Blog.create(newBlog); // apa result nya ketika disubmit, gagal atau berhasil?
-  console.log("result creating blog", resultSubmit);
 
   res.redirect("/blog"); // URL, bukan nama file
 }

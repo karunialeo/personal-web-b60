@@ -5,6 +5,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const flash = require("express-flash");
 const session = require("express-session");
+const upload = require("./middlewares/upload-file");
 
 // const { renderBlogEdit, updateBlog } = require("./controllers/controller-v1");
 
@@ -28,6 +29,7 @@ const {
 } = require("./controllers/controller-v2");
 
 const { formatDateToWIB, getRelativeTime } = require("./utils/time");
+const checkUser = require("./middlewares/auth");
 
 const port = 3000;
 
@@ -38,6 +40,7 @@ app.set("views", path.join(__dirname, "./views")); // C://My Computer/Users/Docu
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("assets"));
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(
@@ -76,10 +79,10 @@ app.get("/contact", renderContact);
 app.get("/blog", renderBlog);
 
 // RENDER CREATE BLOG
-app.get("/blog-create", renderBlogCreate);
+app.get("/blog-create", checkUser, renderBlogCreate);
 
 // SUBMIT CREATE NEW BLOG
-app.post("/blog-create", createBlog);
+app.post("/blog-create", checkUser, upload.single("image"), createBlog);
 
 // RENDER EDIT BLOG
 app.get("/blog-edit/:id", renderBlogEdit);
