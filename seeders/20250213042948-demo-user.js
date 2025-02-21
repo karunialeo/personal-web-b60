@@ -18,22 +18,16 @@ module.exports = {
         name: "Rafli Kurniawan",
         email: "rafli@gmail.com",
         password: "asdf",
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         name: "Asa Marsal",
         email: "asamarsal@gmail.com",
         password: "1234",
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         name: "Rizal Khudori",
         email: "rizalk@gmail.com",
         password: "1111",
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ]);
   },

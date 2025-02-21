@@ -1,6 +1,7 @@
 const { Sequelize } = require("sequelize");
 const bcrypt = require("bcrypt");
 const config = require("../config/config.js");
+const { Blog, User } = require("../models");
 require("dotenv").config();
 
 const sequelize = new Sequelize(config[process.env.NODE_ENV]);

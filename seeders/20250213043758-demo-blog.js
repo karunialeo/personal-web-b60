@@ -19,8 +19,6 @@ module.exports = {
         image: "/img/coding.jpg",
         content:
           "Vestibulum rhoncus, quam et pretium iaculis, nibh neque convallis nisl, ac faucibus nunc est elementum quam. Sed sed turpis quam.",
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         authorId: 1,
@@ -28,8 +26,6 @@ module.exports = {
         image: "/img/my-img.jpg",
         content:
           "Curabitur vehicula laoreet hendrerit. Duis eget ultricies turpis, sit amet pretium lectus.",
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         authorId: 2,
@@ -37,8 +33,6 @@ module.exports = {
         image: "/img/blog-img.jpg",
         content:
           "Quisque non ante at metus viverra pulvinar non quis eros. Praesent scelerisque nulla convallis dui placerat interdum. Nulla facilisi. Nunc sodales massa ut ligula lacinia, sit amet congue nisi fringilla.",
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ]);
   },
