@@ -48,7 +48,7 @@ app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-const oneDay = 1000 * 60 * 60 * 24;
+// const oneDay = 1000 * 60 * 60 * 24;
 
 app.use(
   session({
@@ -56,7 +56,7 @@ app.use(
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, sameSite: "none", maxAge: oneDay },
+    // cookie: { secure: true, sameSite: "none", maxAge: oneDay },
   })
 );
 
