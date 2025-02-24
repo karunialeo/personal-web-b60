@@ -19,9 +19,8 @@
         {{#if (equal ../user.id this.authorId)}}
         <div class="blog-item-buttons">
           <a href="/blog-edit/{{this.id}}" class="btn btn-primary">Edit Blog</a>
-          <form style="display: inline;" action="/blog/{{this.id}}?_method=DELETE" method="post">
-            <button onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger"
-              type="submit">Delete Blog</button>
+          <form id="deleteBlog" style="display: inline;" action="/blog/{{this.id}}?_method=DELETE" method="post">
+            <button onclick="deleteConfirm(event)" class="btn btn-danger" type="submit">Delete Blog</button>
           </form>
         </div>
         {{/if}}
@@ -39,5 +38,7 @@
     {{/each}}
   </section>
 </main>
+
+<script src="assets/js/deleteBlog.js"></script>
 
 {{/layout}}

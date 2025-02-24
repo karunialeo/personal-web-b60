@@ -10,7 +10,7 @@ const saltRounds = 10;
 
 async function renderHome(req, res) {
   const user = req.session.user;
-  console.log("usernya adalah :", user);
+  // console.log("usernya adalah :", user);
   res.render("index", { user: user });
 }
 
@@ -73,7 +73,7 @@ async function authLogin(req, res) {
     return res.redirect("/login");
   }
 
-  let loggedInUser = user.toJSON(); // convert dari object sequelize ke object biasa
+  let loggedInUser = user.toJSON(); // convert dari object sequelize ke object biasa ===> object
 
   delete loggedInUser.password; // menghapus properti password pada object new user
 
